@@ -1,5 +1,4 @@
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
+Promise.prototype.finally = function () { }
 
 const asyncReturnProto = Object.getPrototypeOf((async () => {})());
 console.log('async returns global Promise?', asyncReturnProto === Promise.prototype)
