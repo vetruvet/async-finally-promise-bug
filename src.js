@@ -6,6 +6,11 @@ console.log('async returns global Promise?', asyncReturnProto === Promise.protot
 console.log('Promise has finally?', 'finally' in Promise.prototype);
 console.log('async has finally?', 'finally' in Object.getPrototypeOf((async () => {})()));
 
+const asyncPromiseProto = Object.getPrototypeOf((async() => {})());
+if (!('finally' in asyncPromiseProto)) {
+  asyncPromiseProto.finally = Promise.prototype.finally;
+}
+
 function sleep(ms, fail) {
   return new Promise((resolve, reject) => {
     setTimeout(fail ? reject : resolve, ms);
